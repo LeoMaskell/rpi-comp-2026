@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IRIS — Raspberry Pi Competition 2026</title>
+<title>IRIS - Raspberry Pi Competition 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,6 +13,8 @@
     --c2: rgba(0,229,255,0.15);
     --c3: rgba(0,229,255,0.07);
     --bg: #060d14;
+    --mono: 'Share Tech Mono', monospace;
+    --min: 11px; /* absolute minimum font size */
   }
 
   body {
@@ -24,7 +26,6 @@
     font-family: 'Syne', sans-serif;
   }
 
-  /* A4 ratio: 794 × 1123 */
   .poster {
     width: 794px;
     height: 1123px;
@@ -38,8 +39,7 @@
 
   .poster::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
@@ -47,135 +47,128 @@
     z-index: 0;
   }
 
-  .g1, .g2, .g3 {
-    position: absolute; border-radius: 50%;
-    pointer-events: none; z-index: 0; filter: blur(80px);
-  }
-  .g1 { width: 460px; height: 460px; background: radial-gradient(circle, rgba(0,160,200,0.18) 0%, transparent 70%); top: -100px; right: -80px; }
-  .g2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,90,140,0.2) 0%, transparent 70%); bottom: 80px; left: -50px; }
-  .g3 { width: 220px; height: 220px; background: radial-gradient(circle, rgba(0,200,255,0.09) 0%, transparent 70%); top: 45%; left: 38%; }
+  .g1,.g2,.g3 { position:absolute; border-radius:50%; pointer-events:none; z-index:0; filter:blur(80px); }
+  .g1 { width:460px;height:460px;background:radial-gradient(circle,rgba(0,160,200,0.18) 0%,transparent 70%);top:-100px;right:-80px; }
+  .g2 { width:300px;height:300px;background:radial-gradient(circle,rgba(0,90,140,0.2) 0%,transparent 70%);bottom:60px;left:-50px; }
+  .g3 { width:220px;height:220px;background:radial-gradient(circle,rgba(0,200,255,0.09) 0%,transparent 70%);top:45%;left:38%; }
 
-  .br { position: absolute; width: 18px; height: 18px; z-index: 4; }
-  .br-tl { top: 14px; left: 14px; border-top: 2px solid var(--c); border-left: 2px solid var(--c); }
-  .br-tr { top: 14px; right: 14px; border-top: 2px solid var(--c); border-right: 2px solid var(--c); }
-  .br-bl { bottom: 14px; left: 14px; border-bottom: 2px solid var(--c); border-left: 2px solid var(--c); }
-  .br-br { bottom: 14px; right: 14px; border-bottom: 2px solid var(--c); border-right: 2px solid var(--c); }
+  .br { position:absolute; width:18px;height:18px; z-index:4; }
+  .br-tl { top:14px;left:14px; border-top:2px solid var(--c); border-left:2px solid var(--c); }
+  .br-tr { top:14px;right:14px; border-top:2px solid var(--c); border-right:2px solid var(--c); }
+  .br-bl { bottom:14px;left:14px; border-bottom:2px solid var(--c); border-left:2px solid var(--c); }
+  .br-br { bottom:14px;right:14px; border-bottom:2px solid var(--c); border-right:2px solid var(--c); }
 
   .inner {
-    position: relative; z-index: 2;
-    padding: 32px 40px 32px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    position:relative; z-index:2;
+    padding: 26px 36px 26px;
+    flex:1; display:flex; flex-direction:column;
   }
 
   /* ── TITLE BANNER ── */
   .title-banner {
-    text-align: center;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--c2);
-    position: relative;
+    text-align:center; padding-bottom:14px; margin-bottom:14px;
+    border-bottom:1px solid var(--c2); position:relative;
   }
   .title-banner::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 50%;
-    transform: translateX(-50%);
-    width: 60px; height: 2px;
-    background: var(--c);
+    content:''; position:absolute; bottom:-1px; left:50%;
+    transform:translateX(-50%); width:60px; height:2px; background:var(--c);
   }
-  .banner-pre {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px; letter-spacing: 0.35em;
-    color: rgba(0,229,255,0.55);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .banner-title {
-    font-size: 13px; font-weight: 700;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 2px;
-  }
-  .banner-sub {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 8.5px; letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.28);
-  }
+  .banner-pre  { font-family:var(--mono); font-size:11px; letter-spacing:0.3em; color:rgba(0,229,255,0.6); text-transform:uppercase; margin-bottom:4px; }
+  .banner-title { font-size:15px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.9); margin-bottom:3px; }
+  .banner-sub  { font-family:var(--mono); font-size:11px; letter-spacing:0.14em; color:rgba(255,255,255,0.35); }
 
   /* ── TOP BAR ── */
-  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
-  .pill {
-    font-family: 'Share Tech Mono', monospace; font-size: 9px;
-    letter-spacing: 0.2em; color: var(--c);
-    border: 1px solid var(--c2); padding: 5px 12px; text-transform: uppercase;
-  }
-  .badge {
-    font-family: 'Share Tech Mono', monospace; font-size: 8px;
-    color: rgba(255,255,255,0.28); letter-spacing: 0.1em;
-    text-align: right; line-height: 1.8;
-  }
+  .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .pill  { font-family:var(--mono); font-size:11px; letter-spacing:0.16em; color:var(--c); border:1px solid var(--c2); padding:5px 12px; text-transform:uppercase; }
+  .badge { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.32); letter-spacing:0.08em; text-align:right; line-height:1.7; }
 
   /* ── HERO ── */
-  .hero { display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 28px; margin-bottom: 22px; }
-  .eye-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .eye-label { font-family: 'Share Tech Mono', monospace; font-size: 7.5px; letter-spacing: 0.28em; color: rgba(0,229,255,0.4); text-align: center; }
+  .hero { display:grid; grid-template-columns:140px 1fr; align-items:center; gap:24px; margin-bottom:14px; }
+  .eye-col { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .eye-label { font-family:var(--mono); font-size:11px; letter-spacing:0.2em; color:rgba(0,229,255,0.45); text-align:center; }
 
-  .title-iris { font-size: 82px; font-weight: 800; letter-spacing: 0.25em; line-height: 0.88; color: #fff; text-shadow: 0 0 70px rgba(0,229,255,0.28); margin-bottom: 8px; }
-  .title-iris .hi { color: var(--c); }
-  .title-expand { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(0,229,255,0.6); text-transform: uppercase; margin-bottom: 14px; }
-  .tagline { font-size: 12.5px; line-height: 1.65; color: rgba(255,255,255,0.58); max-width: 100%; }
-  .tagline b { color: #fff; font-weight: 700; }
+  .title-iris  { font-size:76px; font-weight:800; letter-spacing:0.25em; line-height:0.88; color:#fff; text-shadow:0 0 70px rgba(0,229,255,0.28); margin-bottom:6px; }
+  .title-iris .hi { color:var(--c); }
+  .title-expand { font-family:var(--mono); font-size:11px; letter-spacing:0.18em; color:rgba(0,229,255,0.65); text-transform:uppercase; margin-bottom:10px; }
+  .tagline { font-size:12.5px; line-height:1.62; color:rgba(255,255,255,0.6); }
+  .tagline b { color:#fff; font-weight:700; }
 
-  .rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--c2), transparent); margin-bottom: 20px; }
+  .rule { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--c2),transparent); margin-bottom:14px; }
 
   /* ── SECTION LABEL ── */
   .sec-label {
-    font-family: 'Share Tech Mono', monospace; font-size: 8px;
-    letter-spacing: 0.3em; color: var(--c); text-transform: uppercase;
-    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.25em; color:var(--c);
+    text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:10px;
   }
-  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--c2); }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--c2); }
 
   /* ── STEPS ── */
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
-  .step {
-    border: 1px solid var(--c2); background: var(--c3);
-    padding: 13px 11px 12px; position: relative;
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+  .step { border:1px solid var(--c2); background:var(--c3); padding:11px 10px; position:relative; }
+  .step::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,var(--c),transparent); opacity:0.4; }
+  .sn { font-family:var(--mono); font-size:11px; color:var(--c); letter-spacing:0.12em; margin-bottom:5px; }
+  .si { font-size:16px; margin-bottom:4px; line-height:1; }
+  .st { font-size:12px; font-weight:700; color:#fff; margin-bottom:4px; }
+  .sd { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.45); line-height:1.45; }
+
+  /* ── PIPELINE ── */
+  .pipeline { border:1px solid var(--c2); background:var(--c3); padding:12px 14px; margin-bottom:14px; position:relative; overflow:hidden; }
+  .pipeline::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,transparent,var(--c),transparent); opacity:0.3; }
+  .pipeline-nodes { display:flex; align-items:center; justify-content:space-between; }
+
+  .pnode { display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; }
+  .pnode-icon {
+    width:36px; height:36px; border:1px solid var(--c2);
+    background:rgba(0,229,255,0.08); border-radius:5px;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
   }
-  .step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--c), transparent); opacity: 0.4; }
-  .sn { font-family: 'Share Tech Mono', monospace; font-size: 8px; color: var(--c); letter-spacing: 0.15em; margin-bottom: 7px; }
-  .si { font-size: 17px; margin-bottom: 6px; line-height: 1; }
-  .st { font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-  .sd { font-family: 'Share Tech Mono', monospace; font-size: 8.5px; color: rgba(255,255,255,0.42); line-height: 1.5; }
+  .pnode-label { font-family:var(--mono); font-size:11px; color:#fff; font-weight:700; letter-spacing:0.04em; text-align:center; }
+  .pnode-sub   { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.4); text-align:center; line-height:1.3; }
+
+  .parrow { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:3px; padding-bottom:24px; padding-left:2px; padding-right:2px; }
+  .parrow-proto { font-family:var(--mono); font-size:11px; color:rgba(0,229,255,0.5); letter-spacing:0.04em; white-space:nowrap; }
+  .parrow-row   { display:flex; align-items:center; }
+  .parrow-line  { width:22px; height:1px; background:linear-gradient(90deg,var(--c2),var(--c)); }
 
   /* ── LOWER ── */
-  .lower { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 18px; flex: 1; }
-  .card { border: 1px solid var(--c2); background: var(--c3); padding: 15px 14px; }
-  .ct { font-size: 12.5px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .lower { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
+  .card  { border:1px solid var(--c2); background:var(--c3); padding:12px 12px; }
+  .ct    { font-size:12px; font-weight:700; color:#fff; margin-bottom:8px; }
 
-  .spec { display: flex; justify-content: space-between; align-items: baseline; padding: 4.5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 9px; }
-  .sk { font-family: 'Share Tech Mono', monospace; color: rgba(255,255,255,0.36); font-size: 12.5; }
-  .sv { font-weight: 700; color: #fff; font-size: 12.5px; }
+  .spec { display:flex; justify-content:space-between; align-items:baseline; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .sk   { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.4); }
+  .sv   { font-weight:700; color:#fff; font-size:11px; text-align:right; }
 
-  .flist { list-style: none; }
-  .flist li { display: flex; gap: 7px; padding: 4.5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-family: 'Share Tech Mono', monospace; font-size: 15px; color: rgba(255,255,255,0.52); line-height: 1.45; }
-  .flist li::before { content: '▸'; color: var(--c); flex-shrink: 0; margin-top: 1px; }
+  .flist { list-style:none; }
+  .flist li {
+    display:flex; gap:7px; padding:4px 0;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    font-family:var(--mono); font-size:11px;
+    color:rgba(255,255,255,0.55); line-height:1.4;
+  }
+  .flist li::before { content:'▸'; color:var(--c); flex-shrink:0; margin-top:1px; }
 
-  .stats-card { border: 1px solid var(--c2); background: var(--c3); padding: 15px 14px; display: flex; flex-direction: column; }
-  .stat { text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 6px 0; }
-  .stat + .stat { border-top: 1px solid rgba(0,229,255,0.1); }
-  .snum { font-size: 30px; font-weight: 800; color: var(--c); line-height: 1; text-shadow: 0 0 28px rgba(0,229,255,0.45); margin-bottom: 3px; }
-  .slbl { font-family: 'Share Tech Mono', monospace; font-size: 12.5px; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); }
+  .stats-card { border:1px solid var(--c2); background:var(--c3); padding:12px 12px; display:flex; flex-direction:column; }
+  .stat { text-align:center; flex:1; display:flex; flex-direction:column; justify-content:center; padding:4px 0; }
+  .stat + .stat { border-top:1px solid rgba(0,229,255,0.1); }
+  .snum { font-size:28px; font-weight:800; color:var(--c); line-height:1; text-shadow:0 0 28px rgba(0,229,255,0.45); margin-bottom:3px; }
+  .slbl { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; color:rgba(255,255,255,0.38); }
+
+  /* ── WHY IT MATTERS ── */
+  .why { border:1px solid var(--c2); background:var(--c3); padding:14px 18px; margin-bottom:14px; position:relative; overflow:hidden; }
+  .why::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,transparent,var(--c),transparent); opacity:0.3; }
+  .why-grid { display:grid; grid-template-columns:1fr 1px 1fr 1px 1fr; gap:0; align-items:center; }
+  .why-divider { width:1px; height:48px; background:var(--c2); justify-self:center; }
+  .why-item { padding:0 18px; text-align:center; }
+  .why-num { font-size:26px; font-weight:800; color:var(--c); line-height:1; margin-bottom:4px; text-shadow:0 0 20px rgba(0,229,255,0.4); }
+  .why-label { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.5); line-height:1.4; }
 
   /* ── FOOTER ── */
-  .footer { padding-top: 16px; border-top: 1px solid var(--c2); display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
-  .fl-name { font-size: 18px; font-weight: 800; letter-spacing: 0.2em; }
-  .fl-name .hi { color: var(--c); }
-  .fl-sub { font-family: 'Share Tech Mono', monospace; font-size: 7.5px; color: rgba(255,255,255,0.25); letter-spacing: 0.18em; margin-top: 3px; }
-  .fr { font-family: 'Share Tech Mono', monospace; font-size: 7.5px; color: rgba(255,255,255,0.2); text-align: right; line-height: 2; }
+  .footer { padding-top:13px; border-top:1px solid var(--c2); display:flex; justify-content:space-between; align-items:flex-end; margin-top:auto; }
+  .fl-name { font-size:18px; font-weight:800; letter-spacing:0.2em; }
+  .fl-name .hi { color:var(--c); }
+  .fl-sub { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.28); letter-spacing:0.14em; margin-top:3px; }
+  .fr     { font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.22); text-align:right; line-height:1.9; }
 </style>
 </head>
 <body>
@@ -186,23 +179,20 @@
 
   <div class="inner">
 
-    <!-- title banner -->
     <div class="title-banner">
       <div class="banner-pre">Project Proposal</div>
       <div class="banner-title">Autonomous Elderly Care Monitoring System</div>
       <div class="banner-sub">Raspberry Pi Competition 2026 · Entry Submission</div>
     </div>
 
-    <!-- top bar -->
     <div class="topbar">
       <div class="pill">Raspberry Pi Competition 2026</div>
       <div class="badge">Autonomous Monitoring · Assistive Robotics<br>Elderly Care Technology</div>
     </div>
 
-    <!-- hero -->
     <div class="hero">
       <div class="eye-col">
-        <svg width="148" height="74" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="134" height="67" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="90" cy="45" rx="85" ry="40" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.15"/>
           <ellipse cx="90" cy="45" rx="70" ry="33" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.25"/>
           <path d="M 8 45 Q 46 6 90 6 Q 134 6 172 45 Q 134 84 90 84 Q 46 84 8 45Z" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.025)" stroke-opacity="0.9"/>
@@ -214,17 +204,14 @@
           <line x1="90" y1="69" x2="90" y2="77" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.55"/>
           <line x1="58" y1="45" x2="66" y2="45" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.55"/>
           <line x1="114" y1="45" x2="122" y2="45" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.55"/>
-          <path d="M74 21 Q82 14 90 13" stroke="#00e5ff" stroke-width="0.6" fill="none" stroke-opacity="0.3"/>
-          <path d="M106 21 Q98 14 90 13" stroke="#00e5ff" stroke-width="0.6" fill="none" stroke-opacity="0.3"/>
         </svg>
-        <div class="eye-label">VISION SYSTEM ACTIVE</div>
+        <div class="eye-label">VISION ACTIVE</div>
       </div>
-
       <div>
         <div class="title-iris"><span class="hi">I</span>R<span class="hi">I</span>S</div>
         <div class="title-expand">Intelligent Recognition &amp; Incident Surveillance</div>
         <div class="tagline">
-          A <b>robot that watches over elderly care home residents</b> so staff don't have to be everywhere at once. It patrols autonomously, spots when someone isn't moving, and raises the alarm — all without anyone needing to wear a thing.
+          A <b>robot that watches over elderly care home residents</b> so staff don't have to be everywhere at once. It patrols autonomously, spots when someone isn't moving, and raises the alarm - all without anyone needing to wear a thing.
         </div>
       </div>
     </div>
@@ -236,7 +223,7 @@
       <div class="step">
         <div class="sn">01</div><div class="si">🤖</div>
         <div class="st">Patrol</div>
-        <div class="sd">Moves around the room on its own — no remote control needed</div>
+        <div class="sd">Moves around the room on its own - no remote control needed</div>
       </div>
       <div class="step">
         <div class="sn">02</div><div class="si">📷</div>
@@ -246,7 +233,7 @@
       <div class="step">
         <div class="sn">03</div><div class="si">👁</div>
         <div class="st">Analyse</div>
-        <div class="sd">MediaPipe tracks the nose-tip — no movement for too long means trouble</div>
+        <div class="sd">MediaPipe tracks the nose-tip - stillness for too long means trouble</div>
       </div>
       <div class="step">
         <div class="sn">04</div><div class="si">🔔</div>
@@ -255,21 +242,100 @@
       </div>
     </div>
 
+    <div class="sec-label">System architecture</div>
+    <div class="pipeline">
+      <div class="pipeline-nodes">
+
+        <div class="pnode">
+          <div class="pnode-icon">📷</div>
+          <div class="pnode-label">Pi Camera</div>
+          <div class="pnode-sub">captures frames</div>
+        </div>
+
+        <div class="parrow">
+          <div class="parrow-proto">raw frames</div>
+          <div class="parrow-row">
+            <div class="parrow-line"></div>
+            <svg width="6" height="8" viewBox="0 0 6 8"><path d="M0 0 L6 4 L0 8Z" fill="rgba(0,229,255,0.6)"/></svg>
+          </div>
+        </div>
+
+        <div class="pnode">
+          <div class="pnode-icon">🍓</div>
+          <div class="pnode-label">Raspberry Pi</div>
+          <div class="pnode-sub">encodes &amp; sends</div>
+        </div>
+
+        <div class="parrow">
+          <div class="parrow-proto">Python socket</div>
+          <div class="parrow-row">
+            <div class="parrow-line"></div>
+            <svg width="6" height="8" viewBox="0 0 6 8"><path d="M0 0 L6 4 L0 8Z" fill="rgba(0,229,255,0.6)"/></svg>
+          </div>
+        </div>
+
+        <div class="pnode">
+          <div class="pnode-icon">💻</div>
+          <div class="pnode-label">Laptop</div>
+          <div class="pnode-sub">runs pipeline</div>
+        </div>
+
+        <div class="parrow">
+          <div class="parrow-proto">landmarks</div>
+          <div class="parrow-row">
+            <div class="parrow-line"></div>
+            <svg width="6" height="8" viewBox="0 0 6 8"><path d="M0 0 L6 4 L0 8Z" fill="rgba(0,229,255,0.6)"/></svg>
+          </div>
+        </div>
+
+        <div class="pnode">
+          <div class="pnode-icon">👁</div>
+          <div class="pnode-label">MediaPipe</div>
+          <div class="pnode-sub">stillness check</div>
+        </div>
+
+        <div class="parrow">
+          <div class="parrow-proto">PWM signal</div>
+          <div class="parrow-row">
+            <div class="parrow-line"></div>
+            <svg width="6" height="8" viewBox="0 0 6 8"><path d="M0 0 L6 4 L0 8Z" fill="rgba(0,229,255,0.6)"/></svg>
+          </div>
+        </div>
+
+        <div class="pnode">
+          <div class="pnode-icon">⚙️</div>
+          <div class="pnode-label">Servos</div>
+          <div class="pnode-sub">drive wheels</div>
+        </div>
+
+      </div>
+    </div>
+
     <div class="lower">
-      <div class="card">
-        <div class="ct">Hardware Stack</div>
-        <div class="spec"><span class="sk">COMPUTE</span><span class="sv">Raspberry Pi 4B</span></div>
-        <div class="spec"><span class="sk">VISION</span><span class="sv">Pi Camera Module V2</span></div>
-        <div class="spec"><span class="sk">MOTION</span><span class="sv">2× SG90-HV continuous Servos</span></div>
-        <div class="spec"><span class="sk">POWER</span><span class="sv">HW-131 Module - USB</span></div>
-        <div class="spec"><span class="sk">COMMS</span><span class="sv">MQTT / Python Sockets</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="card">
+          <div class="ct">Hardware Stack</div>
+          <div class="spec"><span class="sk">COMPUTE</span><span class="sv">Raspberry Pi 4B</span></div>
+          <div class="spec"><span class="sk">VISION</span><span class="sv">Pi Camera Module V2</span></div>
+          <div class="spec"><span class="sk">MOTION</span><span class="sv">2x SG90-HV Servos</span></div>
+          <div class="spec"><span class="sk">POWER</span><span class="sv">HW-131 Module - USB</span></div>
+          <div class="spec"><span class="sk">COMMS</span><span class="sv">Python Sockets / WiFi</span></div>
+        </div>
+        <div class="card">
+          <div class="ct">Estimated Cost</div>
+          <div class="spec"><span class="sk">Raspberry Pi 4B</span><span class="sv">~£50</span></div>
+          <div class="spec"><span class="sk">Pi Camera V2</span><span class="sv">~£20</span></div>
+          <div class="spec"><span class="sk">2x SG90-HV Servos</span><span class="sv">~£10</span></div>
+          <div class="spec"><span class="sk">HW-131 + misc</span><span class="sv">~£10</span></div>
+          <div class="spec" style="border-bottom:none;margin-top:2px;"><span class="sk" style="color:rgba(0,229,255,0.7);font-weight:700;">TOTAL</span><span class="sv" style="color:var(--c);font-size:13px;">~£90</span></div>
+        </div>
       </div>
       <div class="card">
         <div class="ct">What makes it special</div>
         <ul class="flist">
-          <li>No wearables — residents don't have to do anything</li>
+          <li>No wearables - residents don't have to do anything</li>
           <li>Nose-tip tracking catches stillness others miss</li>
-          <li>MQTT keeps servo control snappy and reliable</li>
+          <li>Pi handles everything - no extra microcontroller needed</li>
           <li>Runs 24/7 without any staff input</li>
           <li>Built on affordable, off-the-shelf parts</li>
           <li>Easy to extend with extra sensors or alerts</li>
@@ -283,13 +349,33 @@
       </div>
     </div>
 
+    <div class="sec-label">Why it matters</div>
+    <div class="why">
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-num">1 in 3</div>
+          <div class="why-label">adults over 65 fall at least once a year, often going unnoticed for hours</div>
+        </div>
+        <div class="why-divider"></div>
+        <div class="why-item">
+          <div class="why-num">500k+</div>
+          <div class="why-label">care home residents in the UK with no continuous automated monitoring</div>
+        </div>
+        <div class="why-divider"></div>
+        <div class="why-item">
+          <div class="why-num">minutes</div>
+          <div class="why-label">can be the difference between full recovery and serious long-term harm</div>
+        </div>
+      </div>
+    </div>
+
     <div class="footer">
       <div>
         <div class="fl-name"><span class="hi">I</span>R<span class="hi">I</span>S</div>
         <div class="fl-sub">Raspberry Pi Competition · 2026</div>
       </div>
       <div class="fr">
-        Raspberry Pi 4B · MediaPipe<br>
+        Raspberry Pi 4B · MediaPipe · Python<br>
         Computer Vision · Assistive Robotics
       </div>
     </div>
