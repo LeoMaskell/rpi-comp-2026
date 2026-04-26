@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IRIS — Intelligent Recognition & Incident Surveillance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0b1120;
+      --navy2:   #111d35;
+      --teal:    #00c8c8;
+      --teal2:   #00a3a3;
+      --teal-dim:#004f4f;
+      --white:   #e8f4f4;
+      --grey:    #8faab5;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Background grid ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,200,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,200,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Ambient glow ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,200,200,.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 80px;
+      gap: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 52px;
+      animation: fadeDown .9s ease both;
+    }
+
+    /* ── Logo SVG ── */
+    .logo-wrap {
+      position: relative;
+      width: 120px; height: 120px;
+    }
+    .logo-wrap svg { width: 100%; height: 100%; }
+
+    /* Rotating scan ring */
+    .scan-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--teal-dim);
+      animation: spin 10s linear infinite;
+    }
+    .scan-ring::before {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    /* ── Wordmark ── */
+    .wordmark {
+      text-align: center;
+    }
+    .wordmark h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 6rem);
+      letter-spacing: .25em;
+      background: linear-gradient(135deg, var(--teal) 0%, #fff 60%, var(--teal2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      text-shadow: none;
+      filter: drop-shadow(0 0 24px rgba(0,200,200,.4));
+    }
+    .wordmark p {
+      margin-top: 10px;
+      font-size: 1rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--grey);
+      font-weight: 300;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 260px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      margin-bottom: 48px;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    /* ── Video section ── */
+    .video-section {
+      width: 100%;
+      max-width: 900px;
+      animation: fadeUp 1s .3s ease both;
+    }
+
+    .video-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+    .video-label::before, .video-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal-dim));
+    }
+    .video-label::after {
+      background: linear-gradient(90deg, var(--teal-dim), transparent);
+    }
+
+    .video-frame {
+      position: relative;
+      border: 1px solid var(--teal-dim);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+      box-shadow:
+        0 0 0 1px rgba(0,200,200,.1),
+        0 0 60px rgba(0,200,200,.08),
+        0 30px 80px rgba(0,0,0,.6);
+    }
+
+    /* corner accents */
+    .video-frame::before, .video-frame::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .video-frame::before {
+      top: 0; left: 0;
+      border-top: 2px solid var(--teal);
+      border-left: 2px solid var(--teal);
+    }
+    .video-frame::after {
+      bottom: 0; right: 0;
+      border-bottom: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+    }
+    /* other two corners via inner pseudo */
+    .video-frame .corner-tr, .video-frame .corner-bl {
+      position: absolute;
+      width: 20px; height: 20px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .video-frame .corner-tr {
+      top: 0; right: 0;
+      border-top: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+    }
+    .video-frame .corner-bl {
+      bottom: 0; left: 0;
+      border-bottom: 2px solid var(--teal);
+      border-left: 2px solid var(--teal);
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      background: #000;
+    }
+
+    /* ── Status bar under video ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding: 0 4px;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      color: var(--teal-dim);
+      font-family: 'Orbitron', sans-serif;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 60px;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      color: var(--teal-dim);
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      animation: fadeIn 1.5s ease both;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown  { from { opacity:0; transform:translateY(-20px) } to { opacity:1; transform:none } }
+    @keyframes fadeUp    { from { opacity:0; transform:translateY(20px)  } to { opacity:1; transform:none } }
+    @keyframes fadeIn    { from { opacity:0 } to { opacity:1 } }
+    @keyframes spin      { to   { transform: rotate(360deg) } }
+    @keyframes pulse     { 0%,100%{ opacity:1 } 50%{ opacity:.3 } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <div class="scan-ring"></div>
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="60" cy="60" r="56" stroke="#00c8c8" stroke-width="1.5" opacity=".4"/>
+        <!-- Eye whites -->
+        <ellipse cx="60" cy="60" rx="42" ry="26" fill="#0b1120" stroke="#00c8c8" stroke-width="1.5"/>
+        <!-- Iris gradient -->
+        <defs>
+          <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00c8c8"/>
+            <stop offset="60%" stop-color="#006666"/>
+            <stop offset="100%" stop-color="#003333"/>
+          </radialGradient>
+          <radialGradient id="pupilGrad" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#1a2a3a"/>
+            <stop offset="100%" stop-color="#000"/>
+          </radialGradient>
+        </defs>
+        <!-- Iris -->
+        <circle cx="60" cy="60" r="22" fill="url(#irisGrad)"/>
+        <!-- Pupil -->
+        <circle cx="60" cy="60" r="11" fill="url(#pupilGrad)"/>
+        <!-- Catchlight -->
+        <circle cx="66" cy="54" r="4" fill="white" opacity=".25"/>
+        <!-- Iris detail lines -->
+        <circle cx="60" cy="60" r="17" stroke="#003333" stroke-width="1" opacity=".6"/>
+        <!-- Scan line -->
+        <line x1="18" y1="60" x2="42" y2="60" stroke="#00c8c8" stroke-width="1" opacity=".5"/>
+        <line x1="78" y1="60" x2="102" y2="60" stroke="#00c8c8" stroke-width="1" opacity=".5"/>
+        <!-- Corner brackets -->
+        <path d="M10 20 L10 10 L20 10" stroke="#00c8c8" stroke-width="1.5" opacity=".6"/>
+        <path d="M110 20 L110 10 L100 10" stroke="#00c8c8" stroke-width="1.5" opacity=".6"/>
+        <path d="M10 100 L10 110 L20 110" stroke="#00c8c8" stroke-width="1.5" opacity=".6"/>
+        <path d="M110 100 L110 110 L100 110" stroke="#00c8c8" stroke-width="1.5" opacity=".6"/>
+      </svg>
+    </div>
+
+    <!-- Wordmark -->
+    <div class="wordmark">
+      <h1>IRIS</h1>
+      <p>Intelligent Recognition &amp; Incident Surveillance</p>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <section class="video-section">
+    <div class="video-label">System Demo Feed</div>
+    <div class="video-frame">
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <video controls preload="metadata">
+        <source src="video.mov" type="video/quicktime"/>
+        <source src="video.mov" type="video/mp4"/>
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="status-bar">
+      <span><span class="status-dot"></span>Feed Active</span>
+      <span>IRIS v1.0</span>
+      <span>Care Home Monitoring System</span>
+    </div>
+  </section>
+
+  <footer>Raspberry Pi Competition 2026</footer>
+</main>
+</body>
+</html>
