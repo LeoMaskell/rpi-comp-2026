@@ -1,18 +1,17 @@
 # The Bluecoat School Liverpool's PA Consulting Raspberry Pi competition 2026 Entry
-
+ 
 ## The issue:
-- In many nursing homes and single-person homes, injuries aren't detected quick enough.
-- The longer it takes for someone to find out their injuries, the more severe their injuries will be.
-- This leads to **major consequences**.
-
-## The purpose:
-- Protect our elderly with our carefully designed Intelligent Recognition & Incident Surveillance technology.
-- We can recognise an elderly person in the camera's field of view, detect if they are in danger, then help them - all while being aware of everything else that is happening in frame.
-- If an elderly person has a dangerous fall in their care home, they can end up not being found for hours - some cases show up to 4 hours of wait time until the patient was found.
-- This is **not** OK.
-- Whilst it might be justified for reasons such as staff being busy, or even ill themlselves, there must be a solution.
-- There **is**, and we made it.
-
+- In many nursing homes and single-person homes, injuries are not detected quickly enough.
+Cases show delays of up to 4 hours before a patient is found.
+- The longer it takes for someone to discover an injury, the more severe their injuries will be. This can potentially lead to serious health complications.
+- Current systems often fail - nursing homes are understaffed and fixed monitoring creates blind spots.
+ 
 ## The solution:
-- Small rovers that circuit each floor in order to discover unresponsive bodies faster, more efficiently and while giving our nurses a break so they can do more usefull tasks, such as checking up on patients individually.
-- Security cameras have blindspots, but if they move then those blindspots will not be there, as all corners can be covered by small robots moving in cycles accross all floors of a building.
+- We designed small rovers that patrol each floor continuously in order to discover unresponsive bodies faster, more efficiently, reducing pressure on healthcare staff - allowing them to check up on each patient individually without constant manual monitoring.
+- The issue of blind spots is addressed via our rovers as they are able to move around - ensuring full coverage, including corners and obstructed areas.
+- Our design works around Intelligent Recognition and Incident Surveillance technology, detecting if they are in danger, all while being aware of other activity within the frame.
+ 
+## The benefits:
+- Injuries are detected significantly faster, reducing risks associated with delayed response. 
+- Workload is reduced for healthcare staff, and the system is easy to deploy.
+- Improved staff efficiency, scalable and relatively cheap.
