@@ -11,7 +11,7 @@ Cases show delays of up to 4 hours before a patient is found.
 - The issue of blind spots is addressed via our rovers as they are able to move around - ensuring full coverage, including corners and obstructed areas.
 - Our design works around Intelligent Recognition and Incident Surveillance technology, detecting if they are in danger, all while being aware of other activity within the frame.
  
-## The benefits:
+## The benefits to our solution:
 - Injuries are detected significantly faster, reducing risks associated with delayed response. 
 - Workload is reduced for healthcare staff, and the system is easy to deploy.
 - Improved staff efficiency, scalable and relatively cheap.
