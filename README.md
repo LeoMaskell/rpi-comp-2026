@@ -6,7 +6,7 @@
 - This leads to **major consequences**.
 
 ## The purpose:
-- Protect our elderly with our carefully designed Image Recognition Detection and Help Awareness technology.
+- Protect our elderly with our carefully designed Intelligent Recognition & Incident Surveillance technology.
 - We can recognise an elderly person in the camera's field of view, detect if they are in danger, then help them - all while being aware of everything else that is happening in frame.
 - If an elderly person has a dangerous fall in their care home, they can end up not being found for hours - some cases show up to 4 hours of wait time until the patient was found.
 - This is **not** OK.
