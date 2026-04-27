@@ -162,7 +162,7 @@ Manual commands override autonomous mode for 5 seconds.
 
 ## Demo
 
-See [`video link.txt`](video%20link.txt) for a link to the demo video, and [`poster/index.html`](poster/index.html) for the competition poster.
+See [`video link.txt`](https://rpi-comp-2026.onrender.com/) for a QR code to the demo video, and [`poster/index.html`](https://tbcs-entry-rpi.onrender.com/) for the competition poster.
 
 ---
 
