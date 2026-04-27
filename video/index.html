@@ -310,18 +310,20 @@
   <div class="divider"></div>
 
   <section class="video-section">
-    <div class="video-label">System Demo</div>
-    <div class="video-frame">
-      <div class="corner-tr"></div>
-      <div class="corner-bl"></div>
-      <video controls preload="metadata">
-        <source src="https://drive.google.com/file/d/1PmAntRpSPG3uFgo3R7Jj-OFSVLD7z5PD/view?usp=sharing" type="video/quicktime"/>
-        <source src="https://drive.google.com/file/d/1PmAntRpSPG3uFgo3R7Jj-OFSVLD7z5PD/view?usp=sharing" type="video/mp4"/>
-        Your browser does not support the video tag.
-      </video>
+    <div class="video-label">Demo Video</div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+      <div class="video-frame" style="padding: 28px; display:inline-block;">
+        <div class="corner-tr"></div>
+        <div class="corner-bl"></div>
+        <img src="qrcode.png" alt="IRIS Demo Video QR Code"
+          style="display:block; width:260px; height:260px; image-rendering:pixelated;"/>
+      </div>
+      <p style="font-family:'Rajdhani',sans-serif; font-size:1rem; letter-spacing:.15em; color:var(--grey); text-transform:uppercase;">
+        Scan to watch the demo
+      </p>
     </div>
-    <div class="status-bar">
-      <span><span class="status-dot"></span>Feed Active</span>
+    <div class="status-bar" style="margin-top:16px;">
+      <span><span class="status-dot"></span>Link Active</span>
       <span>IRIS v1.0</span>
       <span>Care Home Monitoring System</span>
     </div>
