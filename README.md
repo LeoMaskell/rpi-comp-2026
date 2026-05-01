@@ -1,26 +1,26 @@
-# IRIS — Intelligent Recognition & Incident Surveillance
+# MediPi: IRIS - Intelligent Recognition & Incident Surveillance
 
 > **Bluecoat School Liverpool · PA Consulting Raspberry Pi Competition 2026**
 
-IRIS is an autonomous rover that continuously patrols care homes and raises an alarm the moment it detects an unresponsive person — no wearables, no constant manual monitoring, no blind spots.
+IRIS is an autonomous rover that continuously patrols care homes and raises an alarm the moment it detects an unresponsive person - no wearables, no constant manual monitoring, no blind spots.
 
 ---
 
 ## The problem
 
 - In nursing homes and single-occupancy homes, injuries go undetected for up to **4 hours**.
-- The longer a person waits for help, the more severe the outcome — delayed response can turn a minor fall into a life-threatening event.
+- The longer a person waits for help, the more severe the outcome - delayed response can turn a minor fall into a life-threatening event.
 - Existing systems rely on understaffed carers or fixed cameras with blind spots; neither provides reliable, continuous coverage.
 
 ## The solution
 
-IRIS is a small, affordable rover built on a Raspberry Pi 4B. It patrols autonomously, streams live video to a laptop, and uses **MediaPipe face landmark detection** to track whether a person has stopped moving. If someone remains still for too long, an audible alarm fires immediately — giving staff seconds to respond instead of hours.
+IRIS is a small, affordable rover built on a Raspberry Pi 4B. It patrols autonomously, streams live video to a laptop, and uses **MediaPipe face landmark detection** to track whether a person has stopped moving. If someone remains still for too long, an audible alarm fires immediately - giving staff seconds to respond instead of hours.
 
 Key advantages:
-- **No blind spots** — the rover moves, so every corner is covered.
-- **No wearables** — residents don't need to press a button or wear a device.
-- **No extra microcontroller** — the Pi handles camera, motors, and comms in a single script.
-- **Always on** — runs 24/7 without any staff input.
+- **No blind spots** - the rover moves, so every corner is covered.
+- **No wearables** - residents don't need to press a button or wear a device.
+- **No extra microcontroller** - the Pi handles camera, motors, and comms in a single script.
+- **Always on** - runs 24/7 without any staff input.
 
 ---
 
@@ -75,17 +75,17 @@ Connectivity: WiFi (no extra hardware needed).
 
 ### Raspberry Pi
 - Python 3
-- [pigpio](https://abyz.me.uk/rpi/pigpio/) — `sudo apt install pigpio python3-pigpio`
-- [Picamera2](https://github.com/raspberrypi/picamera2) — `sudo apt install python3-picamera2`
+- [pigpio](https://abyz.me.uk/rpi/pigpio/) - `sudo apt install pigpio python3-pigpio`
+- [Picamera2](https://github.com/raspberrypi/picamera2) - `sudo apt install python3-picamera2`
 
 ### Laptop (processing node)
 - Python 3
-- OpenCV — `pip install opencv-python`
-- MediaPipe — `pip install mediapipe`
-- NumPy — `pip install numpy`
-- `paplay` (PulseAudio) for the alarm sound — `sudo apt install pulseaudio-utils`
-- `face_landmarker.task` model file — download from the [MediaPipe Models page](https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker#models) and place it alongside `lpmain.py`
-- `alarm.wav` — place an alarm sound file alongside `lpmain.py`
+- OpenCV - `pip install opencv-python`
+- MediaPipe - `pip install mediapipe`
+- NumPy - `pip install numpy`
+- `paplay` (PulseAudio) for the alarm sound - `sudo apt install pulseaudio-utils`
+- `face_landmarker.task` model file - download from the [MediaPipe Models page](https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker#models) and place it alongside `lpmain.py`
+- `alarm.wav` - place an alarm sound file alongside `lpmain.py`
 
 ---
 
